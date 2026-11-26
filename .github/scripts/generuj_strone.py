@@ -62,11 +62,11 @@ def main():
             bloki.append('    <ul><li class="brak">Brak aktualnych plików do pobrania.</li></ul>')
 
         tresc_blokow = "\n".join(bloki)
-sekcje.append(
-    f"""<section class="klasa"><h2>{tytul}</h2>
+        sekcje.append(
+            f"""<section class="klasa"><h2>{tytul}</h2>
 {tresc_blokow}
 </section>"""
-)
+        )
 
     strona = f"""<!DOCTYPE html>
 <html lang="pl">
