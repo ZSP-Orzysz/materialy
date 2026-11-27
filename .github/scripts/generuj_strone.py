@@ -61,43 +61,38 @@ def main():
         if not bloki:
             bloki.append('    <ul><li class="brak">Brak aktualnych plików do pobrania.</li></ul>')
 
-        tresc_blokow = "\n".join(bloki)
-sekcje.append(
-    f"""<section class="klasa"><h2>{tytul}</h2>
-{tresc_blokow}
-</section>"""
-)
+        sekcje.append(f'  <section class="klasa"><h2>{tytul}</h2>\n' + "\n".join(bloki) + "\n  </section>")
 
-    strona = f"""<!DOCTYPE html>
+    naglowek = """<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Materiały na informatykę – ZSP Orzysz</title>
   <style>
-    body {{ font-family: system-ui, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #1e293b; }}
-    h1 {{ color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }}
-    .klasa {{ background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; }}
-    .klasa h2 {{ margin-top: 0; margin-bottom: 0.75rem; font-size: 1.2rem; color: #0369a1; }}
-    details {{ background: #fff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.5rem 0.9rem; margin-bottom: 0.65rem; }}
-    details:last-child {{ margin-bottom: 0; }}
-    summary {{ font-weight: 600; color: #334155; cursor: pointer; padding: 0.25rem 0; }}
-    summary:hover {{ color: #0284c7; }}
-    ul {{ list-style: none; padding: 0; margin: 0.4rem 0 0 0; }}
-    li {{ display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0; border-bottom: 1px solid #f1f5f9; }}
-    li:last-child {{ border-bottom: none; }}
-    a.btn {{ background: #0284c7; color: #fff; text-decoration: none; padding: 0.35rem 0.85rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }}
-    a.btn:hover {{ background: #0369a1; }}
-    .brak {{ color: #64748b; font-size: 0.9rem; font-style: italic; }}
+    body { font-family: system-ui, sans-serif; max-width: 840px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; color: #1e293b; }
+    h1 { color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+    .klasa { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
+    .klasa h2 { margin-top: 0; margin-bottom: 0.75rem; font-size: 1.2rem; color: #0369a1; }
+    details { background: #fff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.5rem 0.9rem; margin-bottom: 0.65rem; }
+    details:last-child { margin-bottom: 0; }
+    summary { font-weight: 600; color: #334155; cursor: pointer; padding: 0.25rem 0; }
+    summary:hover { color: #0284c7; }
+    ul { list-style: none; padding: 0; margin: 0.4rem 0 0 0; }
+    li { display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0; border-bottom: 1px solid #f1f5f9; }
+    li:last-child { border-bottom: none; }
+    a.btn { background: #0284c7; color: #fff; text-decoration: none; padding: 0.35rem 0.85rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem; }
+    a.btn:hover { background: #0369a1; }
+    .brak { color: #64748b; font-size: 0.9rem; font-style: italic; }
   </style>
 </head>
 <body>
   <h1>Pliki startowe na lekcje informatyki</h1>
   <p>Wybierz swoją klasę oraz dział, a następnie kliknij <strong>Pobierz</strong> przy zadaniu.</p>
-{chr(10).join(sekcje)}
-</body>
-</html>
 """
+    stopka = "\n</body>\n</html>\n"
+    strona = naglowek + "\n".join(sekcje) + stopka
+
     with open("docs/index.html", "w", encoding="utf-8") as f:
         f.write(strona)
 
